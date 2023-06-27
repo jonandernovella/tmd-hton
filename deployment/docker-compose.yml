@@ -1,0 +1,53 @@
+version: "3"
+services:
+
+  strapi:
+    command: sh -c 'rm -rf /home/node/app/node_modules/* && npm run develop'
+    build:
+      context: ../cms
+      dockerfile: ../deployment/strapi/Dockerfile
+    restart: on-failure
+    env_file: ./strapi/strapi.env.default
+    volumes:
+      - ../cms:/home/node/app
+      - exclude:/home/node/app/node_modules
+
+  cbapi:
+    build:
+      dockerfile: ../deployment/cbapi/Dockerfile
+    command: 'npm run start'
+    restart: always
+    env_file: ./cbapi/chartbrew.env.default
+    depends_on:
+      - postgres
+
+  cbadmin:
+    build:
+      dockerfile: ../deployment/cbadmin/Dockerfile
+      args:
+        - REACT_APP_CLIENT_HOST=http://localhost:4568/cbadmin/
+        - REACT_APP_API_HOST=http://localhost:4567/cbapi/
+    volumes:
+      - ./cbadmin/nginx-dev.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - 127.0.0.1:4568:80
+
+  nginx:
+    image: nginx:1-alpine-slim
+    volumes:
+      - ./nginx/nginx-dev.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - 127.0.0.1:4567:80
+
+  postgres:
+    image: postgres:15.3-alpine
+    restart: always
+    env_file: ./postgres/postgres.env.default
+    volumes:
+      - postgr:/var/lib/postgresql/data
+      - ./postgres/init-scripts:/docker-entrypoint-initdb.d
+
+volumes:
+  postgr:
+    driver: local
+  exclude:
