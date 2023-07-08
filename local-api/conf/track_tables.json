@@ -1,0 +1,12 @@
+{
+  "type": "bulk",
+  "args": [
+    {
+      "type": "track_table",
+      "args": {
+        "schema": "public",
+        "name": "event"
+      }
+    }
+  ]
+}

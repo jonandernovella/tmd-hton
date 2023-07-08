@@ -1,0 +1,23 @@
+{
+  "type": "run_sql",
+  "args": {
+    "sql": "
+    DROP SCHEMA public CASCADE;
+    CREATE SCHEMA public;
+    CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\";
+
+    CREATE TABLE event(
+        id serial NOT NULL,
+        title text NOT NULL,
+        event_uuid uuid NOT NULL DEFAULT uuid_generate_v4(),
+        participants text NOT NULL DEFAULT '0',
+        created timestamp NOT NULL DEFAULT now(),
+        start_date timestamp NOT NULL DEFAULT now(),
+        end_date timestamp NOT NULL DEFAULT now(),
+        PRIMARY KEY (id),
+        UNIQUE(title)
+    );
+    INSERT INTO event (title) VALUES (concat('Event ', floor(random() * 1000 + 1)::int));
+    "
+  }
+}

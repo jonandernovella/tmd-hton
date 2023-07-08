@@ -1,0 +1,45 @@
+{
+  "type": "bulk",
+  "args": [
+    {
+      "type": "add_remote_schema",
+      "args": {
+        "name": "node1",
+        "definition": {
+          "url": "http://node1-graphql:8080/v1/graphql",
+          "forward_client_headers": true,
+          "timeout_seconds": 60,
+          "headers": [
+            {
+              "name": "x-hasura-admin-secret",
+              "value": "testkey"
+            }
+          ],
+          "customization": {
+            "root_fields_namespace": "node1"
+          }
+        }
+      }
+    },
+    {
+      "type": "add_remote_schema",
+      "args": {
+        "name": "node2",
+        "definition": {
+          "url": "http://node2-graphql:8080/v1/graphql",
+          "forward_client_headers": true,
+          "timeout_seconds": 60,
+          "headers": [
+            {
+              "name": "x-hasura-admin-secret",
+              "value": "testkey"
+            }
+          ]
+        },
+        "customization": {
+          "root_fields_namespace": "node2"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "type": "pg_add_source",
+  "args": {
+    "name": "default",
+    "configuration": {
+      "connection_info": {
+        "database_url": {
+          "from_env": "PG_DATABASE_URL"
+        },
+        "pool_settings": {
+          "retries": 1,
+          "idle_timeout": 180,
+          "max_connections": 50
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+#!/bin/bash
+NODE1_GRAPHQL_ENDPOINT="http://localhost:8080/v1"
+NODE2_GRAPHQL_ENDPOINT="http://localhost:8081/v1"
+
+
+check_exit_status() {
+    if [ $? -eq 0 ]; then
+        echo "Command succeeded."
+    else
+        echo "Command failed. Exiting."
+        exit 1
+    fi
+}
+
+current_directory=$(pwd)
+echo "The present working directory is: $current_directory"
+
+echo "Initializing local databases..."
+local-api/init-db "$NODE1_GRAPHQL_ENDPOINT"
+check_exit_status
+
+local-api/init-db "$NODE2_GRAPHQL_ENDPOINT"
+check_exit_status
+
+echo "Adding remote schemas"
+gateway-api/add-remote-schemas
+check_exit_status
+
+echo "The database setup was executed successfully."

@@ -1,0 +1,36 @@
+#!/bin/sh -eu
+
+if [ $# -eq 0 ]; then
+    echo "ERROR: GRAPHQL_ENDPOINT argument is missing."
+    echo "Usage: $0 GRAPHQL_ENDPOINT"
+    exit 1
+fi
+
+GRAPHQL_ENDPOINT="$1"
+GRAPHQL_TOKEN="testkey"
+
+# These are the query API types for each JSON file in turn:
+set -- metadata query query
+confdir="$(dirname "$0")/conf"
+
+# Do queries.
+for json in \
+    "$confdir/graphql-postgres.json" \
+    "$confdir/schema.json" \
+    "$confdir/track_tables.json"
+do
+    printf 'Loading "%s"\n' "$json"
+    if ! curl -s -d @"$json" \
+        -H 'Content-Type: application/json' \
+        -H 'X-Hasura-Role: admin' \
+        -H "X-Hasura-Admin-Secret: $GRAPHQL_TOKEN" \
+        "$GRAPHQL_ENDPOINT/$1"
+    then
+        printf 'Failed loading "%s"\n' "$json"
+        printf 'Is Docker containers up and running?\n'
+        exit 1
+    fi
+
+    shift
+    echo
+done

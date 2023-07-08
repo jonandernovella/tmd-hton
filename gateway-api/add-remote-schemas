@@ -1,0 +1,22 @@
+#!/bin/sh -eu
+
+GATEWAY_GRAPHQL_ENDPOINT="http://localhost:8082/v1"
+GRAPHQL_TOKEN="testkey"
+
+confdir="$(dirname "$0")/conf"
+
+# Do queries.
+json="$confdir/remote-schemas.json"
+
+printf 'Loading "%s"\n' "$json"
+if ! curl -s -d @"$json" \
+	-H 'Content-Type: application/json' \
+	-H 'X-Hasura-Role: admin' \
+	-H "X-Hasura-Admin-Secret: $GRAPHQL_TOKEN" \
+	"$GATEWAY_GRAPHQL_ENDPOINT/metadata"
+then
+	printf 'Failed loading "%s"\n' "$json"
+	printf 'Is Docker containers up and running?\n'
+	exit 1
+fi
+
