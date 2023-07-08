@@ -34,10 +34,10 @@
               "name": "x-hasura-admin-secret",
               "value": "testkey"
             }
-          ]
-        },
-        "customization": {
-          "root_fields_namespace": "node2"
+          ],
+          "customization": {
+            "root_fields_namespace": "node2"
+          }
         }
       }
     }
