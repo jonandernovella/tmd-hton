@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_metrics_single_choice_numericals",
+  "info": {
+    "displayName": "Single choice numerical"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "value": {
+      "type": "integer"
+    }
+  }
+}

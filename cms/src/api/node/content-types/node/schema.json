@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "nodes",
+  "info": {
+    "singularName": "node",
+    "pluralName": "nodes",
+    "displayName": "Node",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "country": {
+      "type": "enumeration",
+      "enum": [
+        "Sweden",
+        "Spain"
+      ],
+      "required": true
+    }
+  }
+}

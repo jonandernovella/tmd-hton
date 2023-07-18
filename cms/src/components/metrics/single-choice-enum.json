@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_metrics_single_choice_enums",
+  "info": {
+    "displayName": "Multiple choice",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "values": {
+      "type": "json",
+      "required": false
+    }
+  }
+}

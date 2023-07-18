@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_metrics_single_choice_texts",
+  "info": {
+    "displayName": "Single choice text"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "value": {
+      "type": "string"
+    }
+  }
+}

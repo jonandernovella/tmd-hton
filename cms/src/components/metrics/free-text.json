@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_metrics_free_texts",
+  "info": {
+    "displayName": "Free text"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "value": {
+      "type": "text",
+      "required": true
+    }
+  }
+}
