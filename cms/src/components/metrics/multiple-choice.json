@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_metrics_multiple_choices",
+  "info": {
+    "displayName": "Multiple choice"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "values": {
+      "type": "json"
+    }
+  }
+}

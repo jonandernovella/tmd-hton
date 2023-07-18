@@ -317,9 +317,9 @@
       "type": "dynamiczone",
       "components": [
         "metrics.free-text",
-        "metrics.single-choice-enum",
         "metrics.single-choice-numerical",
-        "metrics.single-choice-text"
+        "metrics.single-choice-text",
+        "metrics.multiple-choice"
       ],
       "required": false
     },
@@ -327,18 +327,18 @@
       "type": "dynamiczone",
       "components": [
         "metrics.free-text",
-        "metrics.single-choice-enum",
         "metrics.single-choice-numerical",
-        "metrics.single-choice-text"
+        "metrics.single-choice-text",
+        "metrics.multiple-choice"
       ]
     },
     "impactMetrics": {
       "type": "dynamiczone",
       "components": [
         "metrics.free-text",
-        "metrics.single-choice-enum",
         "metrics.single-choice-numerical",
-        "metrics.single-choice-text"
+        "metrics.single-choice-text",
+        "metrics.multiple-choice"
       ]
     }
   }
